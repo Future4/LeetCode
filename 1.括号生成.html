@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>括号生成</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 如果n=2
+     * 那么生成的括号就是
+     * ()()  (())
+     * 
+     * 思路：寻找规律，首先 在生成时，左括号一定小于n，其次 在生成括号时，右括号个数一定小于左括号个数
+     * 
+     */
+
+    function test(n) {
+      // cur 当前字符串
+      // l left括号个数
+      // r right括号个数
+      let res = (cur, l, r) => {
+        if (l == n && r == n) {
+          console.log(cur)
+        }
+
+        if (l < n) {
+          res(cur + '（', l + 1, r)
+        }
+        if (r < l) {
+          res(cur + '）', l, r + 1)
+        }
+      }
+
+      res('', 0, 0)
+
+    }
+    test(3)
+  </script>
+</body>
+
+</html>
