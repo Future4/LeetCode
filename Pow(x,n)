@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pow(x,n)</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * @param {number} x
+     * @param {number} n
+     * @return {number}
+     */
+
+    //  首先想到的是 x**n
+    var myPow = function (x, n) {
+      return x ** n
+
+    };
+    // 但是这样太偷懒了，下面用递归的方法做一遍
+
+    /**
+     * 
+     * 思路：   当n是偶数的时候， 5的 n 次方 == （5*5）的 n/2 次方
+     *         当n是奇数的时候， 5的 n 次方 == 5 * 5的 n-1 次方  
+     * 这是数学哦！
+     * 
+     * 当n为负数的时候，5的 n 次方 == 1 / 5 * 5 的 n-1 次方
+     * 然后因为 最小数比最大数要小  n 是 32 位有符号整数，其数值范围是 [−2 的 31次方, 2 的 (31 − 1)次方] 。
+     */
+    var myPow = function (x, n) {
+      if (n == 0) {
+        return 1
+      }
+      if (n == 1) {
+        return x
+      }
+      if (n < 0) {
+        return 1 / (x * myPow(x, -(n + 1)))
+      }
+
+      return n % 2 == 0 ? myPow(x * x, n / 2) : x * myPow(x, n - 1)
+    };
+  </script>
+</body>
+
+</html>
