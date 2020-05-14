@@ -55,17 +55,44 @@
       }
       var left = 1;
       var right = x;
+
       while (left <= right) {
+        // 求出中间值
         var middle = left + ((right - left) >> 1);
         if (middle * middle == x) {
           return middle;
         } else if (middle * middle > x) {
+          // 如果中间值的平方 大于x，那么中间值-1 赋值给right
           right = middle - 1;
         } else {
+          // 如果中间值的平方 小于x，那么中间值+1 赋值给left
           left = middle + 1;
         }
       }
       return right;
+    };
+
+
+    // 牛顿迭代法
+
+    // 公式为 1/2(x0+a/x0)
+
+
+    var mySqrt = function (x) {
+      if (x < 0) {
+        return 'false'
+      }
+      if (x == 0) {
+        return 0
+      }
+      var cur = 1
+      while (true) {
+        pre = cur
+        cur = (cur + x / cur) / 2
+        if (Math.abs(cur - pre) < 1e-6) {
+          return cur
+        }
+      }
     };
   </script>
 </body>
