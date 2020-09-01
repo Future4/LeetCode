@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST</title>
 </head>
+
 <body>
-    
+    <script>
+
+        var reverseString = function (s) {
+            function helper(start, end, ls) {
+                if (start > end) {
+                    return ls
+                }
+                [ls[start], ls[end]] = [ls[end], ls[start]]
+                return helper(start + 1, end - 1, ls)
+            }
+            return helper(0, s.length - 1, s)
+        };
+        console.log(reverseString(["H", "a", "n", "n", "a", "h"]))
+
+
+        // var generate = function (numRows) {
+        //杨辉三角
+        function yhsj(n, m) {
+            if (m > n) {
+                return false;
+            } else {
+                if (m == 1 || m == n) {
+                    return 1;
+                } else {
+                    return yhsj(n - 1, m) + yhsj(n - 1, m - 1);
+                }
+            }
+        }
+        console.log(yhsj(5, 4))
+        // };
+
+
+    </script>
 </body>
+
 </html>
