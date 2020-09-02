@@ -23,8 +23,7 @@
         console.log(reverseString(["H", "a", "n", "n", "a", "h"]))
 
 
-        // var generate = function (numRows) {
-        //杨辉三角
+        //杨辉三角 1
         function yhsj(n, m) {
             if (m > n) {
                 return false;
@@ -36,10 +35,39 @@
                 }
             }
         }
-        console.log(yhsj(5, 4))
-        // };
+        let res = []
+        for (let i = 1; i <= 5; i++) {
+            let arr = []
+            for (let j = 1; j <= i; j++) {
+                arr.push(yhsj(i, j))
+            }
+            res.push(arr)
+        }
+        console.log(res)
 
 
+        //杨辉三角 2 
+        var triangle = function (num) {
+            let res = []
+            res.push([1])
+            loop([1])
+            function loop(arr) {
+                if (arr.length < num) {
+                    let itemArr = []
+
+                    itemArr[0] = 1
+                    itemArr[arr.length] = 1
+
+                    for (let i = 0; i < arr.length - 1; i++) {
+                        itemArr[i + 1] = arr[i] + arr[i + 1]
+                    }
+                    res.push(itemArr)
+                    loop(itemArr)
+                }
+            }
+            return res
+        }
+        console.log(triangle(5))
     </script>
 </body>
 
