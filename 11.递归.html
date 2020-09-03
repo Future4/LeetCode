@@ -46,13 +46,13 @@
         console.log(res)
 
 
-        //杨辉三角 2 
+        //杨辉三角 2   算出第num行的数组
         var triangle = function (num) {
             let res = []
             res.push([1])
-            loop([1])
+            return loop([1])
             function loop(arr) {
-                if (arr.length < num) {
+                if (arr.length < num + 1) {
                     let itemArr = []
 
                     itemArr[0] = 1
@@ -62,14 +62,16 @@
                         itemArr[i + 1] = arr[i] + arr[i + 1]
                     }
                     res.push(itemArr)
-                    loop(itemArr)
+                    return loop(itemArr)
+                } else {
+                    return arr
                 }
             }
-            return res
+            // return res[num]
         }
-        console.log(triangle(5))
+        console.log(triangle(1))
 
-        
+
     </script>
 </body>
 
