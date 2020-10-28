@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [6, 3, 7, 9, 5, 11, 1, 2, 8, 4, 10]
+        function one(arr, left, right) {
+            if (left < right) {
+                let i = left, j = right, key = arr[left];
+                while (i < j) {
+                    while (i < j && arr[j] > key) {
+                        j--;
+                    }
+                    if (i < j) {
+                        arr[i] = arr[j];
+                        i++;
+                    }
+                    while (i < j && arr[i] < key) {
+                        i++;
+                    }
+                    if (i < j) {
+                        arr[j] = arr[i];
+                        j--
+                    }
+                }
+                arr[i] = key
+                one(arr, left, i); // 递归调用 
+                one(arr, i + 1, right);
+            }
+            return arr
+        }
+
+
+
+        console.log(one(arr, 0, arr.length - 1))
+
+    </script>
+</body>
+
+</html>
