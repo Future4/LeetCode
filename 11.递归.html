@@ -81,8 +81,83 @@
             }
             return prev
         };
-        console.log(reverseList([1,2,3,4,5]))
+        console.log(reverseList([1, 2, 3, 4, 5]))
+
+
+
+        console.log('斐波那契记忆化优化------------------------------------------------')
+        let result = 0
+        let map = {}
+        function fib(n) {
+            if (map[n]) {
+                return map[n]
+            }
+            if (n < 2) {
+                result = n
+            } else {
+                result = fib(n - 1) + fib(n - 2)
+            }
+            map[n] = result
+            return result
+        }
+        console.log(fib(5))
+
+
+        // 斐波那契数列  数学公式法
+
+        var fib = function (N) {
+            N = N - 1
+            if (N < 0) {
+                return 0
+            }
+            if (N < 1) {
+                return 1
+            }
+            const sqrt_5 = Math.sqrt(5);
+            const fib_n = Math.pow((1 + sqrt_5) / 2, N + 1) - Math.pow((1 - sqrt_5) / 2, N + 1);
+            return Math.round(fib_n / sqrt_5);
+
+        };
+
+        let tree = {
+            val: 1,
+            left: {
+                val: 2,
+                left: {
+                    val: 4
+                },
+                right: {
+                    val: 5
+                }
+            },
+            right: {
+                val: 3,
+                left: {
+                    val: 6
+                }
+            }
+        }
+        var inorderTraversal = function (root) {
+            const res = [];
+            const stk = [];
+            while (root || stk.length) {
+                while (root) {
+                    stk.push(root);
+                    root = root.left;
+                }
+                root = stk.pop();
+                res.push(root.val);
+                root = root.right;
+            }
+            return res;
+        };
+
+        console.log(inorderTraversal(tree))
+
+
+
     </script>
+
 </body>
 
 </html>
