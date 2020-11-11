@@ -155,7 +155,24 @@
         console.log(inorderTraversal(tree))
 
 
+        var kthGrammar = function (N, K) {
+            let num = '0'
+            let cur = ''
+            for (let i = 0; i < N; i++) {
+                for (let j = 0; j < i == 0 ? num.length : cur.length; j++) {
+                    if (i == 0 ? num[j] : cur[j] === '0') {
+                        cur = cur + '01'
+                        break;
+                    } else {
+                        cur = cur + '10'
+                        break;
+                    }
+                }
+            }
 
+            console.log(cur)
+        };
+        kthGrammar(4, 5)
     </script>
 
 </body>
