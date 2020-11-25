@@ -90,6 +90,7 @@ mySort(arr)
 //然后递归 前半部分 和 后半部分
 
 const arr = [6, 3, 4, 8, 9, 2, 1, 5, 7, 10]
+const arr2 = [6, 3, 4, 2, 1, 5, 9, 8, 7, 10]
 function mySort(arr, left, right) {
     let partitionIndex;
     let len = arr.length
@@ -108,14 +109,14 @@ function partition(arr, left, right) {
     let pivot = left;
     let index = pivot + 1
 
-    for (let n = index; n <= right; n++) {
-        if (arr[n] < arr[pivot]) {
-            swap(arr, n, index);
+    for (let i = index; i <= right; i++) {
+        if (arr[i] < arr[pivot]) {
+            swap(arr, i, index);
             index++;
         }
     }
+    debugger
     swap(arr, pivot, index - 1)
-
     return index - 1
 }
 
