@@ -115,7 +115,6 @@ function partition(arr, left, right) {
             index++;
         }
     }
-    debugger
     swap(arr, pivot, index - 1)
     return index - 1
 }
@@ -124,3 +123,25 @@ function swap(arr, i, j) {
     [arr[i], arr[j]] = [arr[j], arr[i]]
 }
 mySort(arr)
+
+
+
+
+//插入排序
+const arr = [6, 3, 4, 8, 9, 2, 1, 5, 7, 10]
+function mySort(arr) {
+    let len = arr.length
+    for (let i = 1; i < len; i++) {
+        let prev = i - 1
+        let current = arr[i]
+
+        while (prev >= 0 && current < arr[prev]) {
+            arr[prev + 1] = arr[prev]
+            prev--;
+        }
+        arr[prev + 1] = current
+    }
+    return arr
+}
+
+console.log(mySort(arr))
