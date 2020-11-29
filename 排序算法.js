@@ -145,3 +145,36 @@ function mySort(arr) {
 }
 
 console.log(mySort(arr))
+
+//快速排序
+const arr = [6, 3, 4, 8, 9, 2, 1, 5, 7, 10]
+function mySort(arr, left, right) {
+    let len = arr.length
+    left = typeof left == 'number' ? left : 0
+    right = typeof right == 'number' ? right : len - 1
+
+    if (left < right) {
+        let resIndex = main(arr, left, right)
+        left = mySort(arr, left, resIndex - 1)
+        right = mySort(arr, resIndex + 1, right)
+    }
+    return arr
+}
+
+function main(arr, left, right) {
+    let pivot = left
+    let index = pivot + 1
+    for (let i = index; i <= right; i++) {
+        if (arr[i] < arr[pivot]) {
+            exChange(arr, i, index)
+            index++
+        }
+    }
+    exChange(arr, pivot, index - 1)
+    return index - 1
+}
+function exChange(arr, i, j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+}
+
+console.log(mySort(arr))
