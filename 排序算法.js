@@ -146,35 +146,34 @@ function mySort(arr) {
 
 console.log(mySort(arr))
 
-//快速排序
+//归并排序
 const arr = [6, 3, 4, 8, 9, 2, 1, 5, 7, 10]
-function mySort(arr, left, right) {
-    let len = arr.length
-    left = typeof left == 'number' ? left : 0
-    right = typeof right == 'number' ? right : len - 1
-
-    if (left < right) {
-        let resIndex = main(arr, left, right)
-        left = mySort(arr, left, resIndex - 1)
-        right = mySort(arr, resIndex + 1, right)
+//排序
+function mySort(arr) {
+    if (arr.length <= 1) {
+        return arr
     }
-    return arr
-}
+    let mid = Math.floor(arr.length / 2)
+    let left = arr.slice(0, mid)
+    let right = arr.slice(mid)
 
-function main(arr, left, right) {
-    let pivot = left
-    let index = pivot + 1
-    for (let i = index; i <= right; i++) {
-        if (arr[i] < arr[pivot]) {
-            exChange(arr, i, index)
-            index++
+    left = mySort(left)
+    right = mySort(right)
+
+    return merge(left, right)
+}
+//合并
+function merge(arr1, arr2) {
+    var res = []
+    while (arr1.length && arr2.length) {
+        if (arr1[0] < arr2[0]) {
+            res.push(arr1.shift())
+        } else {
+            res.push(arr2.shift())
         }
     }
-    exChange(arr, pivot, index - 1)
-    return index - 1
+    return res.concat(arr1, arr2)
 }
-function exChange(arr, i, j) {
-    [arr[i], arr[j]] = [arr[j], arr[i]]
-}
+
 
 console.log(mySort(arr))
