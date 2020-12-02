@@ -177,3 +177,50 @@ function merge(arr1, arr2) {
 
 
 console.log(mySort(arr))
+
+//股票利益最大化问题
+function cross(arr, low, mid, height) {
+    let left_sum = -Infinity,
+        right_sum = -Infinity,
+        sum = 0,
+        max_left,
+        max_right,
+
+    for (let i = mid; i > low; i--) {
+        sum += arr[i]
+        if (sum > left_sum) {
+            left_sum = sum;
+            max_left = i
+        }
+    }
+
+    sum = 0
+    for (let j = mid + 1; j < height; j++) {
+        sum += arr[j]
+        if (sum > right_sum) {
+            right_sum = sum;
+            max_right = j;
+        }
+    }
+    return (max_left, max_right, left_sum + right_sum)
+}
+
+function maximum(arr, low, height) {
+    if (low == height) {
+        return (low, height, arr[low])
+    } else {
+        let mid = (low + height) / 2;
+        let left_low, left_height, left_sum, right_low, right_height, right_sum, cross_low, cross_height, cross_sum
+        [left_low, left_height, left_sum] = maximum(arr, low, mid);
+        [right_low, right_height, right_sum] = maximum(arr, mid + 1, height);
+        [cross_low, cross_height, cross_sum] = cross(arr, low, mid, height);
+        if (left_sum >= right_sum && left_sum >= cross_sum) {
+            return [left_low, left_height, left_sum];
+        } else if (right_sum >= left_sum && right_sum >= cross_sum) {
+            return [right_low, right_height, right_sum];
+        } else {
+            return [cross_low, cross_height, cross_sum];
+        }
+    }
+}
+console.log(maximum([1, 3, 5, -2, -1, -1, -2, 5, 3, 1], 1, 10))
