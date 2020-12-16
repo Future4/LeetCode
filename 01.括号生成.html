@@ -42,7 +42,68 @@
     test(3)
 
 
-    
+
+
+
+    const arr = [6, 3, 4, 8, 9, 2, 1, 5, 7, 10]
+    // function kuaisu(arr, left, right) {
+    //   left = typeof left == 'number' ? left : 0;
+    //   right = typeof right == 'number' ? right : arr.length;
+    //   if (left < right) {
+    //     let newIndex = main(arr, left, right)
+    //     kuaisu(arr, left, newIndex - 1)
+    //     kuaisu(arr, newIndex + 1, right)
+    //   }
+    //   return arr
+    // }
+
+    // function main(arr, left, right) {
+    //   let prev = left;
+    //   let index = prev + 1;
+    //   for (let i = index; i <= right; i++) {
+    //     if (arr[i] < arr[prev]) {
+    //       exChange(arr, i, index);
+    //       index++;
+    //     }
+    //   }
+    //   exChange(arr, prev, index - 1)
+    //   return index - 1
+    // }
+
+    // function exChange(arr, i, j) {
+    //   [arr[i], arr[j]] = [arr[j], arr[i]]
+    // }
+
+    // console.log(kuaisu(arr))
+
+
+
+    function sort(arr) {
+      if (arr.length <= 1) {
+        return arr
+      }
+      let mid = Math.floor(arr.length / 2)
+      let left = arr.slice(0, mid)
+      let right = arr.slice(mid)
+
+      left = sort(left)
+      right = sort(right)
+
+      return merge(left, right)
+    }
+
+    function merge(leftArr, rightArr) {
+      const res = []
+      while (leftArr.length && rightArr.length) {
+        if (leftArr[0] < rightArr[0]) {
+          res.push(leftArr.shift())
+        } else {
+          res.push(rightArr.shift())
+        }
+      }
+      return res.concat(leftArr, rightArr)
+    }
+    console.log(sort(arr))
   </script>
 </body>
 
