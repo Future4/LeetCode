@@ -92,5 +92,61 @@ var postorderTraversal = function (root) {
     let res = []
     let stk = []
 
- 
+
 }
+
+
+const rootTree = {
+    val: 15,
+    left: {
+        val: 6,
+        left: {
+            val: 3,
+            left: {
+                val: 2
+            },
+            right: {
+                val: 2
+            },
+        },
+        right: {
+            val: 7,
+            right: {
+                val: 13,
+                left: {
+                    val: 9
+                }
+            }
+        },
+    },
+    right: {
+        val: 18,
+        left: { val: 17 },
+        right: { val: 20 },
+    },
+}
+//查询二叉树 
+//递归
+function treeSearch(rootTree, k) {
+    if (!rootTree || rootTree.val == k) {
+        return rootTree
+    }
+    if (rootTree.val < k) {
+        return treeSearch(rootTree.right, k)
+    } else {
+        return treeSearch(rootTree.left, k)
+    }
+}
+
+//迭代
+function treeSearch(rootTree, k) {
+    while (rootTree && rootTree.val != k) {
+        if (rootTree.val < k) {
+            rootTree = rootTree.right
+        } else {
+            rootTree = rootTree.left
+        }
+    }
+}
+
+
