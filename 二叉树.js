@@ -150,3 +150,26 @@ function treeSearch(rootTree, k) {
 }
 
 
+//插入二叉树
+function treeInsert(rootTree, z) {
+    let y;
+    let x = rootTree
+    while (x) {
+        y = x
+        if (z.val < x.val) {
+            x = x.left
+        } else {
+            x = x.right
+        }
+    }
+    if (z.val < y.val) {
+        y.left = z
+    } else {
+        y.right = z
+    }
+    console.log(y, z, rootTree)
+    return y
+}
+treeInsert(rootTree, { val: 16 })
+
+
